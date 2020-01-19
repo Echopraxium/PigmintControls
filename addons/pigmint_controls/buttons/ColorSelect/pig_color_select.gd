@@ -1,19 +1,25 @@
-#=================================================================================
+#==== :@) ==== 8@) ==== ´ö` ==== :@) ==== 8@) ==== ´ö` ==== :@) ==== 8@) ==== ´ö` ====
 # pig_color_select.gd
-#---------------------------------------------------------------------------------
-# Description: 'PigColorSelect' custom control class
+#-------------------------------------------------------------------------------------
+# Description: 'PigColorSelect' control class (subclass of 'PigletColorSelect')
 # Project:     'Pigmint Controls': a custom controls Plugin for Godot 3
 #              https://github.com/Echopraxium/PigmintControls
 # Author:      Echopraxium 2020
-# Version:     0.0.26 (2020/01/19) AAAA/MM/DD
-#=================================================================================
-# https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
-# http://www.alexhoratio.co.uk/2018/08/godot-complete-guide-to-control-nodes.html
+# Version:     0.0.29 (2020/01/19) AAAA/MM/DD
+#-------------------------------------------------------------------------------------
+# Documentation
+# * https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
+# * http://www.alexhoratio.co.uk/2018/08/godot-complete-guide-to-control-nodes.html
+#==== :@) ==== 8@) ==== ´ö` ==== :@) ==== 8@) ==== ´ö` ==== :@) ==== 8@) ==== ´ö` ====
 tool
-#extends TextureButton
+# 'PigColorSelect' is a subclass of 'PigletColorSelect'
 extends "res://addons/pigmint_controls/buttons/ColorSelect/piglet_color_select.gd"
 
+# Note: don't use 'class_name' because it seems not well supported in this version of Godot: 
+# Test: When using 'class_name' and adding a child by searching for 'Pig', I see a weird item: 
+#       'PigColorSelect (pig_color_select.gd)' without the custom 16x16 icon that I provide
 #class_name PigColorSelect
+
 
 """ 32x32 PigColorSelect icon
 +--------------+................
@@ -99,7 +105,4 @@ func _enter_tree():
 
     BUTTON_SIZE = Vector2(FG_BG_PART_SIZE, FG_BG_PART_SIZE)
     _set_icon()
-    #connect("pressed", self, "_clicked")
-    #_g_color_chooser_dialog = ColorPicker.new()
-    #_g_color_chooser_dialog.connect("gui_input", self, "_on_Color_select_dialog_gui_input")
 #---------- _enter_tree()

@@ -1,11 +1,11 @@
 #==== :@) ==== 8@) ==== ´ö` ==== :@) ==== 8@) ==== ´ö` ==== :@) ==== 8@) ==== ´ö` ====
 # piglet_color_select.gd
 #-------------------------------------------------------------------------------------
-# Description: 'PigletColorSelect' custom control class
+# Description: 'PigletColorSelect' control class
 # Project:     'Pigmint Controls': a custom controls Plugin for Godot 3
 #              https://github.com/Echopraxium/PigmintControls
 # Author:      Echopraxium 2020
-# Version:     0.0.26 (2020/01/19) AAAA/MM/DD
+# Version:     0.0.29 (2020/01/19) AAAA/MM/DD
 #-------------------------------------------------------------------------------------
 # Documentation
 # * https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
@@ -14,16 +14,21 @@
 tool
 extends TextureButton
 
-#------------------     Signals    --------------------
+# Note: don't use 'class_name' because it seems not well supported in this version of Godot: 
+# Test: When using 'class_name' and adding a child by searching for 'Pig', I see a weird item:
+#       'PigletColorSelect (piglet_color_select.gd)' without the custom 16x16 icon that I provide
+#class_name PigletColorSelect
+
+
+#---------------------- Signals -----------------------
 signal foreground_color_changed(fg_color)
 signal background_color_changed(bg_color)
 signal colors_switch(color_select_control)
 signal colors_reset(color_select_control)
 #------------------------------------------------------
 
-var _g_icon_path = _getIconPath()
 
-#----------------- PredefinedColors ------------------
+#------------------ PredefinedColors ------------------
 const PredefinedColors =  {
 	BLACK      = Color(0,0,0),
 	WHITE      = Color(1,1,1),
@@ -56,6 +61,8 @@ enum ButtonPart {
 }
 #-----------------------------------------------------
 
+var _g_icon_path              = _getIconPath()
+
 var _g_clicked_part           = ButtonPart.NONE
 
 var _g_foreground_color       = PredefinedColors.BLACK
@@ -73,6 +80,7 @@ var _g_normal_texture = null
 
 var ORIGIN      = Vector2(0,0)
 var BUTTON_SIZE = Vector2(FG_BG_PART_SIZE, FG_BG_PART_SIZE)
+
 
 """ 24x24 PigletColorSelect icon
 +---------+.............
