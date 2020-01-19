@@ -1,12 +1,12 @@
 # PigMint Controls
-A plugin which provides custom controls (mainly for drawing apps) for [Godot Engine](https://godotengine.org/). 
+A [Godot](https://godotengine.org/) plugin which provides custom controls for 2D painting / drawing apps. 
 This plugin currently provides 2 custom "ColorSelect" controls meant to let the user select Foreground/Background colors
 1. **PigletColorSelect**: this one has a 24x24 pixels icon
-  ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select.png)
+  ![](https://raw.githubusercontent.com/Echopraxium/PigmintControls/master/addons/pigmint_controls/buttons/ColorSelect/piglet_color_select.png)
 2. **PigColorSelect**: this one has a 32x32 pixels icon
-  ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select.png)
+  ![](https://raw.githubusercontent.com/Echopraxium/PigmintControls/master/addons/pigmint_controls/buttons/ColorSelect/pig_color_select.png)
 
-![PigMint Controls](./buttons/ColorSelect/PigMint_Color_Select_Screenshot.png)
+![PigMint Controls](https://raw.githubusercontent.com/Echopraxium/PigmintControls/master/addons/pigmint_controls/buttons/ColorSelect/Pigmint_Color_Select_Screenshot.png)
 
 ## How to install the Plugin?
 1. Download as a zip file from github. You should get a file named `pigmint_controls-master.zip`
@@ -21,8 +21,8 @@ This plugin currently provides 2 custom "ColorSelect" controls meant to let the 
 2. Create a container (e.g. a HBoxContainer` or `VBoxContainer`) as a child of the 2D scene.
 3. Select this container then use the right mouse button (to open the context menu) and select `Add Child Node`
 4. In the `Search` field, input `Pig` to find more quickly the `PigletColorSelect` or `PigColorSelect` custom controls.
-    - PigletColorSelect: ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/piglet_color_select_icon.png)
-    - PigColorSelect: ![](https://raw.githubusercontent.com/Echopraxium/pigmint_controls/master/buttons/ColorSelect/pig_color_select_icon.png)
+    - PigletColorSelect: ![](https://raw.githubusercontent.com/Echopraxium/PigmintControls/master/addons/pigmint_controls/buttons/ColorSelect/piglet_color_select_icon.png)
+    - PigColorSelect: ![](https://raw.githubusercontent.com/Echopraxium/PigmintControls/master/addons/pigmint_controls/buttons/ColorSelect/pig_color_select_icon.png)
 5. Select one of these `ColorSelect` control and then `Create`
 
 ## Interactions
