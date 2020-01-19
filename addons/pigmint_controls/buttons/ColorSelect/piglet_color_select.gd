@@ -2,10 +2,10 @@
 # piglet_color_select.gd
 #-------------------------------------------------------------------------------------
 # Description: 'PigletColorSelect' custom control class
-# Project:     'Pigmint Controls', a custom controls Plugin for Godot 3
-#              https://github.com/Echopraxium/pigmint_controls
+# Project:     'Pigmint Controls': a custom controls Plugin for Godot 3
+#              https://github.com/Echopraxium/PigmintControls
 # Author:      Echopraxium 2020
-# Version:     0.0.24 (2020/01/19) AAAA/MM/DD
+# Version:     0.0.26 (2020/01/19) AAAA/MM/DD
 #-------------------------------------------------------------------------------------
 # Documentation
 # * https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
@@ -168,7 +168,7 @@ func get_background_color():
 #----- These virtual functions allow to redefine part's position and size in subclasses ----
 #-------------------------------------------------------------------------------------------
 func _getIconPath():
-    return "res://addons/pigmint_controls/Buttons/ColorSelect/piglet_color_select.png"
+    return "res://addons/pigmint_controls/buttons/ColorSelect/piglet_color_select.png"
 
 # allows to choose an alternative ColorPicker dialog 
 func _getColorPickerDialog():

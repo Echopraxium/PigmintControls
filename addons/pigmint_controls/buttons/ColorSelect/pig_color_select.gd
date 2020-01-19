@@ -2,16 +2,16 @@
 # pig_color_select.gd
 #---------------------------------------------------------------------------------
 # Description: 'PigColorSelect' custom control class
-# Project:     "Pigmint Controls", a custom controls Plugin for Godot 3
-#              https://github.com/Echopraxium/pigmint_controls
+# Project:     'Pigmint Controls': a custom controls Plugin for Godot 3
+#              https://github.com/Echopraxium/PigmintControls
 # Author:      Echopraxium 2020
-# Version:     0.0.21 (2020/01/15) AAAA/MM/DD
+# Version:     0.0.26 (2020/01/19) AAAA/MM/DD
 #=================================================================================
 # https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
 # http://www.alexhoratio.co.uk/2018/08/godot-complete-guide-to-control-nodes.html
 tool
 #extends TextureButton
-extends "res://addons/pigmint_controls/Buttons/ColorSelect/piglet_color_select.gd"
+extends "res://addons/pigmint_controls/buttons/ColorSelect/piglet_color_select.gd"
 
 #class_name PigColorSelect
 
@@ -54,7 +54,7 @@ extends "res://addons/pigmint_controls/Buttons/ColorSelect/piglet_color_select.g
 #----- Redefine virtual functions here for 'PigColorSelect' part's position and size ----
 #----------------------------------------------------------------------------------------
 func _getIconPath():
-    return "res://addons/pigmint_controls/Buttons/ColorSelect/pig_color_select.png"
+    return "res://addons/pigmint_controls/buttons/ColorSelect/pig_color_select.png"
 
 # allows to choose an alternative ColorPicker dialog 
 func _getColorPickerDialog():
@@ -84,6 +84,9 @@ func _getSwitchPartSize():
 #----- Redefine virtual functions here for 'PigColorSelect' part's position and size
 
 
+#------------------------------------------------------------------------
+#----------------------       _enter_tree()        ----------------------
+#------------------------------------------------------------------------
 func _enter_tree():
     _g_icon_path = _getIconPath()
 	
@@ -99,3 +102,4 @@ func _enter_tree():
     #connect("pressed", self, "_clicked")
     #_g_color_chooser_dialog = ColorPicker.new()
     #_g_color_chooser_dialog.connect("gui_input", self, "_on_Color_select_dialog_gui_input")
+#---------- _enter_tree()
