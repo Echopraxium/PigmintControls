@@ -5,7 +5,7 @@
 # Project:     'Pigmint Controls': a custom controls Plugin for Godot 3
 #              https://github.com/Echopraxium/PigmintControls
 # Author:      Echopraxium 2020
-# Version:     0.0.29 (2020/01/19) AAAA/MM/DD
+# Version:     0.0.31 (2020/01/24) AAAA/MM/DD
 #-------------------------------------------------------------------------------------
 # Documentation
 # * https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
@@ -61,14 +61,15 @@ enum ButtonPart {
 }
 #-----------------------------------------------------
 
-var _g_icon_path              = _getIconPath()
+var g_icon_path              = null
 
-var _g_clicked_part           = ButtonPart.NONE
+var g_clicked_part           = ButtonPart.NONE
 
-var _g_foreground_color       = PredefinedColors.BLACK
-var _g_background_color       = PredefinedColors.WHITE
-var _g_foreground_reset_color = PredefinedColors.BLACK
-var _g_background_reset_color = PredefinedColors.WHITE
+export (Color) var ForeColor = PredefinedColors.BLACK
+export (Color) var BackColor = PredefinedColors.WHITE
+
+var g_foreground_reset_color = PredefinedColors.BLACK
+var g_background_reset_color = PredefinedColors.WHITE
 
 var _g_initialized            = false
 var _g_color_chooser_dialog:ColorPicker = null
@@ -114,7 +115,7 @@ var BUTTON_SIZE = Vector2(FG_BG_PART_SIZE, FG_BG_PART_SIZE)
 #----------------------       _enter_tree()        ----------------------
 #------------------------------------------------------------------------
 func _enter_tree():
-    _g_icon_path = _getIconPath()
+    g_icon_path = _getIconPath()
 	
     FG_BG_PART_SIZE        = _getColorPartSize()
     BG_PART_POSITION       = _getBackgroundColorPosition()
@@ -141,34 +142,34 @@ func _on_Color_select_dialog_gui_input(event):
         var picked_color = _getPickedColor()
         _g_color_chooser_dialog.hide()
 		
-        if   (_g_clicked_part == ButtonPart.FOREGROUND):
-            _g_foreground_color = picked_color
-            emit_signal("foreground_color_changed", _g_foreground_color)
+        if   (g_clicked_part == ButtonPart.FOREGROUND):
+            ForeColor = picked_color
+            emit_signal("foreground_color_changed", ForeColor)
             #_g_button_must_be_redrawn = true
             update()
-        elif (_g_clicked_part == ButtonPart.BACKGROUND):
-            _g_background_color = picked_color
-            emit_signal("background_color_changed", _g_background_color)
+        elif (g_clicked_part == ButtonPart.BACKGROUND):
+            BackColor = picked_color
+            emit_signal("background_color_changed", BackColor)
             #_g_button_must_be_redrawn = true
             update()
 #---------- _on_Color_select_dialog_gui_input()
 
 
 #---------- ForegroundColor getter/setter ----------
-func set_foreground_color(color):
-    _g_foreground_color = color
+func set_foreground_color(fg_color):
+    ForeColor = fg_color
 	
 func get_foreground_color():
-	return _g_foreground_color
+	return ForeColor
 #---------------------------------------------------
 
 
 #---------- BackgroundColor getter/setter ----------
-func set_background_color(color):
-    return _g_foreground_color
+func set_background_color(bg_color):
+    BackColor = bg_color
 	
 func get_background_color():
-    return _g_background_color
+    return BackColor
 #---------------------------------------------------
 
 
@@ -250,10 +251,10 @@ func _clicked():
 
         elif (clicked_part == ButtonPart.SWITCH):
             #print("SWITCH_PART clicked")
-            var save_fg_color    = _g_foreground_color
-            _g_foreground_color  = _g_background_color 
-            _g_background_color  = save_fg_color
-            _g_clicked_part      = clicked_part
+            var save_fg_color   = ForeColor
+            ForeColor           = BackColor 
+            BackColor           = save_fg_color
+            g_clicked_part      = clicked_part
             emit_signal("colors_switch", self)
             _g_button_must_be_redrawn = true
             update()
@@ -261,9 +262,9 @@ func _clicked():
 
         elif (clicked_part == ButtonPart.RESET):
             #print("RESET_PART clicked")
-            _g_foreground_color = _g_foreground_reset_color 
-            _g_background_color = _g_background_reset_color
-            _g_clicked_part     = clicked_part
+            ForeColor      = g_foreground_reset_color 
+            BackColor      = g_background_reset_color
+            g_clicked_part = clicked_part
             emit_signal("colors_reset", self)
             #_g_button_must_be_redrawn = true
             update()
@@ -279,7 +280,7 @@ func _clicked():
             var color_chooser_x = node_rect.position.x
             var color_chooser_y = node_rect.position.y + node_rect.size.y
             _getColorPickerDialog().rect_position = Vector2(color_chooser_x, color_chooser_y)
-            _g_clicked_part = clicked_part
+            g_clicked_part = clicked_part
             _getColorPickerDialog().show()
 #----- _clicked()
 
@@ -304,14 +305,14 @@ func _draw():
     var x = rect.origin.x + 1
     var y = rect.origin.y + 1
     var foreground_rect = Rect2(Vector2(x, y), BUTTON_SIZE)
-    draw_rect(foreground_rect, _g_foreground_color)
+    draw_rect(foreground_rect, ForeColor)
     #---------------------------------------------
 
     #---------- Paint "BACKGROUND" part ----------
     x = rect.origin.x + BG_PART_POSITION.x
     y = rect.origin.y + BG_PART_POSITION.y
     var background_rect = Rect2(Vector2(x, y), BUTTON_SIZE)
-    draw_rect(background_rect, _g_background_color)
+    draw_rect(background_rect, BackColor)
     #---------------------------------------------
 	
     #_g_button_must_be_redrawn = false
@@ -396,6 +397,6 @@ func _detect_clicked_part(rect, mouseXY):
 # https://godotengine.org/qa/43318/error-loaded-resource-as-image-file-this-will-not-work-export
 func _set_icon():	
     # Set "Normal" Button Texture
-    _g_normal_texture = load(_g_icon_path)
+    _g_normal_texture = load(g_icon_path)
     set_normal_texture(_g_normal_texture)
 #----- _set_icon()

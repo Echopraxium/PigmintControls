@@ -5,7 +5,7 @@
 # Project:     'Pigmint Controls': a custom controls Plugin for Godot 3
 #              https://github.com/Echopraxium/PigmintControls
 # Author:      Echopraxium 2020
-# Version:     0.0.29 (2020/01/19) AAAA/MM/DD
+# Version:     0.0.31 (2020/01/24) AAAA/MM/DD
 #-------------------------------------------------------------------------------------
 # Documentation
 # * https://docs.godotengine.org/en/3.1/tutorials/plugins/editor/making_plugins.html
